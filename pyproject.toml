@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "cyclonedx-conan"
+version = "0.1.0"
+description = "Creates CycloneDX Software Bill of Materials (SBOM) documents for C/C++ projects using Conan"
+authors = ["Patrick Dwyer <patrick.dwyer@owasp.org>"]
+license = "Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/CycloneDX/cyclonedx-conan"
+repository = "https://github.com/CycloneDX/cyclonedx-conan"
+packages = [
+    { include = "src" }
+]
+include = [
+    "LICENSE", "NOTICE"
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+conan = "1.41.0"
+packageurl-python = "^0.9.6"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+cyclonedx-conan = 'src.command:main'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_variable = [
+    "pyproject.toml:version"
+]
+branch = "master"
+upload_to_pypi = true
+upload_to_release = true
+build_command = "pip install poetry && poetry build"
