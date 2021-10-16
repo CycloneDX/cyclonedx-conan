@@ -12,6 +12,5 @@ RUN apt-get update && apt-get install -y \
 
 USER ${USER}
 ENV PATH="${HOME}/.local/bin:$PATH"
-RUN export PIP_USER=false
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install poetry
