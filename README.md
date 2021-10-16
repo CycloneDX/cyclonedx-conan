@@ -113,6 +113,23 @@ optional arguments:
 We endeavour to support all functionality for all [current actively supported Python versions](https://www.python.org/downloads/).
 However, some features may not be possible/present in older Python versions due to their lack of support.
 
+## Contributing
+
+Pull requests are welcome. But please read the
+[CycloneDX contributing guidelines](https://github.com/CycloneDX/.github/blob/master/CONTRIBUTING.md) first.
+
+It is generally expected that pull requests will include relevant tests.
+Tests are automatically run on Windows, MacOS and Linux for every pull request.
+
+Thanks to [Gitpod](https://gitpod.io/) there are two really easy ways of
+creating a ready to go development environment with VS Code.
+
+You can open a Gitpod hosted development environment in your browser. Or you
+can start a local instance of the OpenVSCode Server by running the
+`localdev.sh` script (requires Docker).
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/CycloneDX/cyclonedx-conan)
+
 ## Copyright & License
 
 CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.
