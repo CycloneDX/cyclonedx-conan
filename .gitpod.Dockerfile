@@ -1,7 +1,7 @@
 ARG BASE_IMAGE=gitpod/workspace-full:latest
-FROM ${BASE_IMAGE}
-
 ARG USER=gitpod
+
+FROM $BASE_IMAGE
 
 USER root
 RUN apt-get update && apt-get install -y \
