@@ -17,7 +17,7 @@ The BOM will contain an aggregate of all your current project's dependencies, in
 
 CycloneDX is a lightweight BOM specification that is easily created, human-readable, and simple to parse.
 
-Please note: This tool has only been tested with Conan 1.14 so far.
+Please note: This tool has only been tested with Conan 1.41 so far.
 
 ## Installation
 
