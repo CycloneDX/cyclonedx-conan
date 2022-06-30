@@ -16,7 +16,7 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-conan = "1.41.0"
+conan = "1.50.0"
 packageurl-python = "^0.9.6"
 
 [tool.poetry.dev-dependencies]
