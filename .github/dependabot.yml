@@ -1,17 +1,40 @@
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
 version: 2
 updates:
-- package-ecosystem: github-actions
-  directory: "/"
-  schedule:
-    interval: weekly
-    day: saturday
-- package-ecosystem: docker
-  directory: "/"
-  schedule:
-    interval: weekly
-    day: saturday
-- package-ecosystem: pip
-  directory: "/"
-  schedule:
-    interval: weekly
-    day: saturday
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'saturday'
+    labels: [ 'dependencies', 'github_actions' ]
+    commit-message:
+      prefix: 'chore'   ## prefix maximum string length of 15
+      include: 'scope'
+    open-pull-requests-limit: 999
+  - package-ecosystem: 'docker'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'saturday'
+    allow:
+      - dependency-type: 'all'
+    versioning-strategy: 'auto'
+    labels: [ 'dependencies', 'docker' ]
+    commit-message:
+      prefix: 'chore'  ## prefix maximum string length of 15
+      include: 'scope'
+    open-pull-requests-limit: 999
+  - package-ecosystem: 'pip'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'saturday'
+    allow:
+      - dependency-type: 'all'
+    versioning-strategy: 'auto'
+    labels: [ 'dependencies', 'python' ]
+    commit-message:
+      prefix: 'chore'  ## prefix maximum string length of 15
+      include: 'scope'
+    open-pull-requests-limit: 999
