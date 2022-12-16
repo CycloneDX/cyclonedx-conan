@@ -65,7 +65,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         python-version: 
-          - '3.9'   # highest supported
+          - '3.11'  # highest supported
+          - '3.10'
+          - '3.9'
           - '3.8'
           - '3.7'
           - '3.6'   # lowest supported
@@ -73,6 +75,9 @@ jobs:
           - # py36 is not available on ubuntu-latest
             python-version: '3.6'
             os: ubuntu-latest
+          - # poetry installer on macos-latest with py311 has issues
+            python-version: '3.11'
+            os: macos-latest
         include:
           - # py36 is not available after ubuntu-20.04
             python-version: '3.6'
