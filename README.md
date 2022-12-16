@@ -1,6 +1,6 @@
 # CycloneDX Conan SBOM Generation Tool
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/CycloneDX/cyclonedx-conan/Python%20CI)](https://github.com/CycloneDX/cyclonedx-conan/actions/workflows/ci.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/CycloneDX/cyclonedx-conan/ci.yml?branch=main)](https://github.com/CycloneDX/cyclonedx-conan/actions/workflows/ci.yml)
 [![GitHub license](https://img.shields.io/github/license/CycloneDX/cyclonedx-conan)](https://github.com/CycloneDX/cyclonedx-conan/blob/main/LICENSE)
 [![Python Version Support](https://img.shields.io/badge/https://-cyclonedx.org-blue)](https://cyclonedx.org/)
 [![Slack Invite](https://img.shields.io/badge/Slack-Join-blue?logo=slack&labelColor=393939)](https://cyclonedx.org/slack/invite)
