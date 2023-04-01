@@ -53,6 +53,11 @@ class CycloneDXCommand:
         dry_build_help = ("Apply the --build argument to output the information, "
                           "as it would be done by the install command")
         parser.add_argument("-db", "--dry-build", action=Extender, nargs="?", help=dry_build_help)
+        output_help='Output file path for your SBOM (set to \'-\' to output to STDOUT)'
+        parser.add_argument(
+            '--output', action='store', metavar='FILE_PATH', default="-", required=False,
+            help=output_help, dest='output_file'
+        )
         build_help = ("Given a build policy, return an ordered list of packages that would be built"
                       " from sources during the install command")
 
@@ -144,8 +149,12 @@ class CycloneDXCommand:
                     dependencies['dependsOn'].append(str(dep_purl))
                 bom['dependencies'].append(dependencies)
 
-        print(json.dumps(bom, indent=2))
-
+        output = json.dumps(bom, indent=2)
+        if self._arguments.output_file == '-' or not self._arguments.output_file:
+            print(output)
+        else:
+            with open(self._arguments.output_file, "w") as file:
+                file.write(output)
 
 def get_purl(remote, ref):
     qualifiers = {

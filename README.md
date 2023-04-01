@@ -63,6 +63,8 @@ optional arguments:
                         setting/option it will raise an error.
   -db [DRY_BUILD], --dry-build [DRY_BUILD]
                         Apply the --build argument to output the information, as it would be done by the install command
+  --output FILE_PATH
+                        Output file path for your SBOM (set to '-' to output to STDOUT)
   -b [BUILD], --build [BUILD]
                         Given a build policy, return an ordered list of packages that would be built from sources during the install
                         command
