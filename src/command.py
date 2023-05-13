@@ -117,8 +117,8 @@ class CycloneDXCommand:
             'dependencies': [],
         }
 
+        required_ids = set()
         if self._arguments.exclude_dev:
-            required_ids = set()
             to_visit: List[Node] = []
             visited_ids = set()
             node: Node
@@ -147,12 +147,18 @@ class CycloneDXCommand:
                 }
                 for dependency in node.dependencies:
                     purl = get_purl(dependency.dst.remote, dependency.dst.ref)
-                    if self._arguments.exclude_dev and str(dependency.dst.id) not in required_ids:
+                    if (
+                        self._arguments.exclude_dev
+                        and str(dependency.dst.id) not in required_ids
+                    ):
                         continue
                     dependencies['dependsOn'].append(str(purl))
                 bom['dependencies'].append(dependencies)
             else:
-                if self._arguments.exclude_dev and str(node.id) not in required_ids:
+                if (
+                    self._arguments.exclude_dev
+                    and str(node.id) not in required_ids
+                ):
                     continue
                 purl = get_purl(node.remote, node.ref)
                 component = {
@@ -170,7 +176,10 @@ class CycloneDXCommand:
                     'dependsOn': [],
                 }
                 for dependency in node.dependencies:
-                    if self._arguments.exclude_dev and str(dependency.dst.id) not in required_ids:
+                    if (
+                        self._arguments.exclude_dev
+                        and str(dependency.dst.id) not in required_ids
+                    ):
                         continue
                     dep_purl = get_purl(dependency.dst.remote, dependency.dst.ref)
                     dependencies['dependsOn'].append(str(dep_purl))
