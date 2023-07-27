@@ -22,6 +22,10 @@ name: Release
 on:
   workflow_dispatch:
 
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 jobs:
   release:
     # https://github.community/t/how-do-i-specify-job-dependency-running-in-another-workflow/16482
