@@ -119,13 +119,9 @@ class CycloneDXCommand:
 
         required_ids = set()
         if self._arguments.exclude_dev:
-            to_visit: List[Node] = []
             visited_ids = set()
             node: Node
-            for node in deps_graph.nodes:
-                if node.ref is None:
-                    # top level component
-                    to_visit.append(node)
+            to_visit = set(node for node in deps_graph.nodes if node.ref is None)
             while to_visit:
                 node = to_visit.pop()
                 if node.id in visited_ids:
@@ -134,7 +130,7 @@ class CycloneDXCommand:
                 required_ids.add(node.id)
                 for dependency in node.dependencies:
                     if str(dependency.dst.id) in node.graph_lock_node.requires:
-                        to_visit.append(dependency.dst)
+                        to_visit.add(dependency.dst)
 
         for node in deps_graph.nodes:
             if node.ref is None:
