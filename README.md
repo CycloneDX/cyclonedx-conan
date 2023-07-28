@@ -41,7 +41,7 @@ Once installed, you can access the full documentation by running `--help`:
 
 The command line options are aligned to the standard Conan options.
 
-```text
+```shellSession
 $ cyclonedx-conan --help
 usage: command.py [-h] [-if INSTALL_FOLDER] [-db [DRY_BUILD]] [-b [BUILD]] [-r REMOTE] [-u] [-l LOCKFILE] [--lockfile-out LOCKFILE_OUT]
                   [-e ENV_HOST] [-e:b ENV_BUILD] [-e:h ENV_HOST] [-o OPTIONS_HOST] [-o:b OPTIONS_BUILD] [-o:h OPTIONS_HOST]
