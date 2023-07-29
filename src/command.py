@@ -25,6 +25,7 @@ import sys
 from uuid import uuid4
 from conans.client.conan_api import Conan, ProfileData
 from conans.client.command import Command as ConanCommand, OnceArgument, Extender, _add_common_install_arguments
+from conans.client.output import ConanOutput, colorama_initialize
 from conans.client.graph.graph import DepsGraph
 from conans.errors import ConanMigrationError, ConanException
 from packageurl import PackageURL
@@ -70,7 +71,7 @@ class CycloneDXCommand:
 
     def execute(self):
         try:
-            conan_api, _, _ = Conan.factory()
+            conan_api = Conan(output=ConanOutput(sys.stderr, sys.stderr, colorama_initialize()))
         except ConanMigrationError:  # Error migrating
             sys.exit(1)
         except ConanException as e:
