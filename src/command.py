@@ -28,7 +28,7 @@ from conans.client.command import Command as ConanCommand, OnceArgument, Extende
 from conans.client.graph.graph import DepsGraph, Node
 from conans.errors import ConanMigrationError, ConanException
 from packageurl import PackageURL
-from typing import List
+from typing import Set
 
 
 class CycloneDXCommand:
@@ -120,8 +120,7 @@ class CycloneDXCommand:
         required_ids = set()
         if self._arguments.exclude_dev:
             visited_ids = set()
-            node: Node
-            to_visit = set(node for node in deps_graph.nodes if node.ref is None)
+            to_visit: Set[Node] = set(node for node in deps_graph.nodes if node.ref is None)
             while to_visit:
                 node = to_visit.pop()
                 if node.id in visited_ids:
