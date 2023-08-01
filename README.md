@@ -43,7 +43,7 @@ The command line options are aligned to the standard Conan options.
 
 ```shellSession
 $ cyclonedx-conan --help
-usage: command.py [-h] [-if INSTALL_FOLDER] [-db [DRY_BUILD]] [-b [BUILD]] [-r REMOTE] [-u] [-l LOCKFILE] [--lockfile-out LOCKFILE_OUT]
+usage: command.py [-h] [-if INSTALL_FOLDER] [-db [DRY_BUILD]] [--exclude-dev] [-b [BUILD]] [-r REMOTE] [-u] [-l LOCKFILE] [--lockfile-out LOCKFILE_OUT]
                   [-e ENV_HOST] [-e:b ENV_BUILD] [-e:h ENV_HOST] [-o OPTIONS_HOST] [-o:b OPTIONS_BUILD] [-o:h OPTIONS_HOST]
                   [-pr PROFILE_HOST] [-pr:b PROFILE_BUILD] [-pr:h PROFILE_HOST] [-s SETTINGS_HOST] [-s:b SETTINGS_BUILD]
                   [-s:h SETTINGS_HOST] [-c CONF_HOST] [-c:b CONF_BUILD] [-c:h CONF_HOST]
@@ -63,6 +63,7 @@ optional arguments:
                         setting/option it will raise an error.
   -db [DRY_BUILD], --dry-build [DRY_BUILD]
                         Apply the --build argument to output the information, as it would be done by the install command
+  --exclude-dev         Exclude development dependencies from the BOM
   -b [BUILD], --build [BUILD]
                         Given a build policy, return an ordered list of packages that would be built from sources during the install
                         command
