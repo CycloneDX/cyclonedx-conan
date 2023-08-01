@@ -25,10 +25,11 @@ import sys
 from uuid import uuid4
 from conans.client.conan_api import Conan, ProfileData
 from conans.client.command import Command as ConanCommand, OnceArgument, Extender, _add_common_install_arguments
+from conans.client.graph.graph import DepsGraph, Node
 from conans.client.output import ConanOutput, colorama_initialize
-from conans.client.graph.graph import DepsGraph
 from conans.errors import ConanMigrationError, ConanException
 from packageurl import PackageURL
+from typing import Set
 
 
 class CycloneDXCommand:
@@ -58,6 +59,11 @@ class CycloneDXCommand:
         parser.add_argument(
             '--output', action='store', metavar='FILE_PATH', default="-", required=False,
             help=output_help, dest='output_file'
+        )
+        exclude_dev_help = 'Exclude development dependencies from the BOM'
+        parser.add_argument(
+            '--exclude-dev', action='store_true',
+            help=exclude_dev_help, dest='exclude_dev'
         )
         build_help = ("Given a build policy, return an ordered list of packages that would be built"
                       " from sources during the install command")
@@ -116,6 +122,21 @@ class CycloneDXCommand:
             'components': [],
             'dependencies': [],
         }
+
+        required_ids = set()
+        if self._arguments.exclude_dev:
+            visited_ids = set()
+            to_visit: Set[Node] = set(node for node in deps_graph.nodes if node.ref is None)
+            while to_visit:
+                node = to_visit.pop()
+                if node.id in visited_ids:
+                    continue
+                visited_ids.add(node.id)
+                required_ids.add(node.id)
+                for dependency in node.dependencies:
+                    if str(dependency.dst.id) in node.graph_lock_node.requires:
+                        to_visit.add(dependency.dst)
+
         for node in deps_graph.nodes:
             if node.ref is None:
                 # top level component
@@ -127,9 +148,19 @@ class CycloneDXCommand:
                 }
                 for dependency in node.dependencies:
                     purl = get_purl(dependency.dst.remote, dependency.dst.ref)
+                    if (
+                        self._arguments.exclude_dev
+                        and str(dependency.dst.id) not in required_ids
+                    ):
+                        continue
                     dependencies['dependsOn'].append(str(purl))
                 bom['dependencies'].append(dependencies)
             else:
+                if (
+                    self._arguments.exclude_dev
+                    and str(node.id) not in required_ids
+                ):
+                    continue
                 purl = get_purl(node.remote, node.ref)
                 component = {
                     'bom-ref': str(purl),
@@ -146,6 +177,11 @@ class CycloneDXCommand:
                     'dependsOn': [],
                 }
                 for dependency in node.dependencies:
+                    if (
+                        self._arguments.exclude_dev
+                        and str(dependency.dst.id) not in required_ids
+                    ):
+                        continue
                     dep_purl = get_purl(dependency.dst.remote, dependency.dst.ref)
                     dependencies['dependsOn'].append(str(dep_purl))
                 bom['dependencies'].append(dependencies)
