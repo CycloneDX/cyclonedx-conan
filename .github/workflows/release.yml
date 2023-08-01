@@ -32,7 +32,6 @@ jobs:
     # limit this to being run on regular commits, not the commits that semantic-release will create
     if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'chore(release):')
     runs-on: ubuntu-latest
-    concurrency: release
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
