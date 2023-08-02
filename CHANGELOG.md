@@ -2,6 +2,17 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2023-08-02)
+
+### Feature
+
+* Add output file path argument ([#83](https://github.com/CycloneDX/cyclonedx-conan/issues/83)) ([`a816105`](https://github.com/CycloneDX/cyclonedx-conan/commit/a816105531b8c3457c3fa9b8dc3456b9f2e3471d))
+
+### Documentation
+
+* Adjust changelog ([#96](https://github.com/CycloneDX/cyclonedx-conan/issues/96)) ([`8a689f6`](https://github.com/CycloneDX/cyclonedx-conan/commit/8a689f66e8f8b0cce89e9ffdd67fa1c6a7d06bcf))
+* Update shields in readme ([#93](https://github.com/CycloneDX/cyclonedx-conan/issues/93)) ([`77ffe60`](https://github.com/CycloneDX/cyclonedx-conan/commit/77ffe60802e62d94bd321a4faaab6377effac248))
+
 ## v0.3.0 (2023-08-01)
 ### Feature
 * Allow `conan >=1.41.0, <2` ([#45](https://github.com/CycloneDX/cyclonedx-conan/issues/45)) ([`08ff414`](https://github.com/CycloneDX/cyclonedx-conan/commit/08ff4142e765ecd4c84c49fd7c38eeb9f6095c62))
