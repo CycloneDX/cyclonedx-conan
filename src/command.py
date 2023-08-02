@@ -193,6 +193,7 @@ class CycloneDXCommand:
             with open(self._arguments.output_file, "w") as file:
                 file.write(output)
 
+
 def get_purl(remote, ref):
     qualifiers = {
         'repository_url': 'localhost' if remote is None else remote.url,
