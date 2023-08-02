@@ -30,10 +30,14 @@ concurrency:
   cancel-in-progress: true
 
 env:
+  PYTHON_VERSION_DEFAULT: "3.9"
+  POETRY_VERSION: "1.1.15"
   REPORTS_DIR: CI_reports
 
 jobs:
   coding-standards:
+    # disabled, unless there are proper rules and configs for flake8 and mypy
+    if: false
     name: Linting & Coding Standards
     runs-on: ubuntu-latest
     steps:
@@ -42,26 +46,22 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
-        uses: actions/setup-python@v4.7.0
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
           architecture: 'x64'
       - name: Install poetry
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v8
         with:
-          poetry-version: 1.1.8
-      - uses: actions/cache@v3
-        with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+          poetry-version: ${{ env.POETRY_VERSION }}
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --no-root
 #      - name: Run tox
 #        run: poetry run tox -e flake8
 
   build-and-test:
-    name: Tests for Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    name: Tests py${{ matrix.python-version }} ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     env:
       REPORTS_ARTIFACT: tests-reports
@@ -69,7 +69,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
         python-version: 
           - '3.11'  # highest supported
           - '3.10'
@@ -96,7 +99,7 @@ jobs:
         run: mkdir ${{ env.REPORTS_DIR }}
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
-        uses: actions/setup-python@v4.7.0
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
           architecture: 'x64'
@@ -104,13 +107,9 @@ jobs:
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v8
         with:
-          poetry-version: 1.1.8
-      - uses: actions/cache@v3
-        with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ hashFiles('poetry.lock') }}
+          poetry-version: ${{ env.POETRY_VERSION }}
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --no-root
       - name: Ensure build successful
         run: poetry build
 #      - name: Run tox
