@@ -26,6 +26,7 @@ from uuid import uuid4
 from conans.client.conan_api import Conan, ProfileData
 from conans.client.command import Command as ConanCommand, OnceArgument, Extender, _add_common_install_arguments
 from conans.client.graph.graph import DepsGraph, Node
+from conans.client.output import ConanOutput, colorama_initialize
 from conans.errors import ConanMigrationError, ConanException
 from packageurl import PackageURL
 from typing import Set
@@ -54,6 +55,11 @@ class CycloneDXCommand:
         dry_build_help = ("Apply the --build argument to output the information, "
                           "as it would be done by the install command")
         parser.add_argument("-db", "--dry-build", action=Extender, nargs="?", help=dry_build_help)
+        output_help='Output file path for your SBOM (set to \'-\' to output to STDOUT)'
+        parser.add_argument(
+            '--output', action='store', metavar='FILE_PATH', default="-", required=False,
+            help=output_help, dest='output_file'
+        )
         exclude_dev_help = 'Exclude development dependencies from the BOM'
         parser.add_argument(
             '--exclude-dev', action='store_true',
@@ -71,7 +77,7 @@ class CycloneDXCommand:
 
     def execute(self):
         try:
-            conan_api, _, _ = Conan.factory()
+            conan_api = Conan(output=ConanOutput(sys.stderr, sys.stderr, colorama_initialize()))
         except ConanMigrationError:  # Error migrating
             sys.exit(1)
         except ConanException as e:
@@ -180,7 +186,12 @@ class CycloneDXCommand:
                     dependencies['dependsOn'].append(str(dep_purl))
                 bom['dependencies'].append(dependencies)
 
-        print(json.dumps(bom, indent=2))
+        output = json.dumps(bom, indent=2)
+        if self._arguments.output_file == '-' or not self._arguments.output_file:
+            print(output)
+        else:
+            with open(self._arguments.output_file, "w") as file:
+                file.write(output)
 
 
 def get_purl(remote, ref):

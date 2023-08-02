@@ -44,7 +44,8 @@ The command line options are aligned to the standard Conan options.
 ```shellSession
 $ cyclonedx-conan --help
 usage: cyclonedx-conan [-h] [-if INSTALL_FOLDER] [-db [DRY_BUILD]]
-                       [--exclude-dev] [-b [BUILD]] [-r REMOTE] [-u]
+                       [--output FILE_PATH] [--exclude-dev]
+                       [-b [BUILD]] [-r REMOTE] [-u]
                        [-l LOCKFILE] [--lockfile-out LOCKFILE_OUT]
                        [-e ENV_HOST] [-e:b ENV_BUILD] [-e:h ENV_HOST]
                        [-o OPTIONS_HOST] [-o:b OPTIONS_BUILD]
@@ -69,6 +70,8 @@ options:
                         If you specify both install-folder and any setting/option it will raise an error.
   -db [DRY_BUILD], --dry-build [DRY_BUILD]
                         Apply the --build argument to output the information, as it would be done by the install command
+  --output FILE_PATH
+                        Output file path for your SBOM (set to '-' to output to STDOUT)
   --exclude-dev         Exclude development dependencies from the BOM
   -b [BUILD], --build [BUILD]
                         Given a build policy, return an ordered list of packages that would be built from sources during the install command
