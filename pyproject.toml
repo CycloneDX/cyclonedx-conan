@@ -3,9 +3,13 @@ name = "cyclonedx-conan"
 version = "0.2.0"
 description = "Creates CycloneDX Software Bill of Materials (SBOM) documents for C/C++ projects using Conan"
 authors = ["Patrick Dwyer <patrick.dwyer@owasp.org>"]
+maintainers = [
+    "Patrick Dwyer <patrick.dwyer@owasp.org>",
+    "Jan Kowalleck <jan.kowalleck@gmail.com>",
+]
 license = "Apache-2.0"
 readme = "README.md"
-homepage = "https://github.com/CycloneDX/cyclonedx-conan"
+homepage = "https://github.com/CycloneDX/cyclonedx-conan#readme"
 repository = "https://github.com/CycloneDX/cyclonedx-conan"
 packages = [
     { include = "src" }
