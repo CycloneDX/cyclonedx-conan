@@ -1,13 +1,12 @@
 # CycloneDX Conan SBOM Generation Tool
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/CycloneDX/cyclonedx-conan/ci.yml?branch=main)](https://github.com/CycloneDX/cyclonedx-conan/actions/workflows/ci.yml)
-[![GitHub license](https://img.shields.io/github/license/CycloneDX/cyclonedx-conan)](https://github.com/CycloneDX/cyclonedx-conan/blob/main/LICENSE)
-[![Python Version Support](https://img.shields.io/badge/https://-cyclonedx.org-blue)](https://cyclonedx.org/)
-[![Slack Invite](https://img.shields.io/badge/Slack-Join-blue?logo=slack&labelColor=393939)](https://cyclonedx.org/slack/invite)
-![PyPI Version](https://img.shields.io/pypi/v/cyclonedx-conan?label=PyPI&logo=pypi)
-![Python Version Support](https://img.shields.io/badge/python-3.6+-blue)
-[![Group Discussion](https://img.shields.io/badge/discussion-groups.io-blue)](https://groups.io/g/CycloneDX)
-[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow)](https://twitter.com/CycloneDX_Spec)
+[![shield_pypi-version]][link_pypi]
+[![shield_gh-workflow-test]][link_gh-workflow-test]
+[![shield_license]][license_file]  
+[![shield_website]][link_website]
+[![shield_slack]][link_slack]
+[![shield_groups]][link_discussion]
+[![shield_twitter-follow]][link_twitter]
 
 ----
 
@@ -21,7 +20,7 @@ Please note: This tool has only been tested with Conan 1.14 so far.
 
 ## Installation
 
-Install this from [PyPi.org](https://pypi.org/project/cyclonedx-conan/) using your preferred Python package manager.
+Install this from [PyPi.org][link_pypi] using your preferred Python package manager.
 
 Example using `pip`:
 
@@ -151,6 +150,25 @@ can start a local instance of the OpenVSCode Server by running the
 
 ## Copyright & License
 
-CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.
+CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.  
+Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.  
+See the [LICENSE][license_file] file for the full license.
 
-Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.
+[license_file]: https://github.com/CycloneDX/cyclonedx-conan/blob/main/LICENSE
+[chaneglog_file]: https://github.com/CycloneDX/cyclonedx-conan/blob/main/CHANGELOG.md
+
+[link_gh-workflow-test]: https://github.com/CycloneDX/cyclonedx-conan/actions/workflows/ci.yml?query=branch%3Amain
+[link_pypi]: https://pypi.org/project/cyclonedx-conan/
+[link_website]: https://cyclonedx.org/
+[link_slack]: https://cyclonedx.org/slack/invite
+[link_discussion]: https://groups.io/g/CycloneDX
+[link_twitter]: https://twitter.com/CycloneDX_Spec
+
+[shield_gh-workflow-test]: https://img.shields.io/github/actions/workflow/status/CycloneDX/cyclonedx-conan/ci.yml?branch=main&logo=GitHub&logoColor=white "build"
+[shield_pypi-version]: https://img.shields.io/pypi/v/cyclonedx-conan?logo=pypi&logoColor=white&label=PyPI "PyPI"
+[shield_license]: https://img.shields.io/github/license/CycloneDX/cyclonedx-conan?logo=open%20source%20initiative&logoColor=white "license"
+[shield_website]: https://img.shields.io/badge/https://-cyclonedx.org-blue.svg "homepage"
+[shield_slack]: https://img.shields.io/badge/slack-join-blue?logo=Slack&logoColor=white "slack join"
+[shield_groups]: https://img.shields.io/badge/discussion-groups.io-blue.svg "groups discussion"
+[shield_twitter-follow]: https://img.shields.io/badge/Twitter-follow-blue?logo=Twitter&logoColor=white "twitter follow"
+
