@@ -126,7 +126,7 @@ class CycloneDXCommand:
         required_ids = set()
         if self._arguments.exclude_dev:
             visited_ids = set()
-            to_visit: Set[Node] = set(node for node in deps_graph.nodes if node.ref is None)
+            to_visit: Set[Node] = set(node for node in deps_graph.nodes if not list(node.ancestors))
             while to_visit:
                 node = to_visit.pop()
                 if node.id in visited_ids:
@@ -138,9 +138,11 @@ class CycloneDXCommand:
                         to_visit.add(dependency.dst)
 
         for node in deps_graph.nodes:
-            if node.ref is None:
+            if not list(node.ancestors):
                 # top level component
-                bom['metadata']['component']['name'] = os.path.basename(os.path.dirname(node.path))
+                bom['metadata']['component']['name'] = node.ref.name if node.ref and node.ref.name else os.path.basename(os.path.dirname(node.path))
+                if node.ref and node.ref.version:
+                    bom['metadata']['component']['version'] = node.ref.version
                 bom['metadata']['component']['bom-ref'] = bom['metadata']['component']['name'] + '@' + bom['metadata']['component']['version']
                 dependencies = {
                     'ref': bom['metadata']['component']['bom-ref'],
