@@ -10,13 +10,19 @@
 
 ----
 
-This project provides a tool for generating CycloneDX bill-of-material JSON documents for C/C++ projects using Conan.
+## Support for Conan v2 and later
+CycloneDX support for Conan2 is available as an [offical Conan2 extension](https://github.com/conan-io/conan-extensions#readme). 
+See the [conan-extensions sbom commands](https://github.com/conan-io/conan-extensions/blob/main/extensions/commands/sbom/README.md)
+
+----
+
+This project provides a tool for generating CycloneDX bill-of-material JSON documents for C/C++ projects using Conan v1.
 
 The BOM will contain an aggregate of all your current project's dependencies, including a full dependency graph.
 
 CycloneDX is a lightweight BOM specification that is easily created, human-readable, and simple to parse.
 
-Please note: This tool has only been tested with Conan 1.14 so far.
+Please note: This tool has only been tested with Conan v1.14 so far.
 
 ## Installation
 
