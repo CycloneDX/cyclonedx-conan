@@ -11,12 +11,13 @@
 ----
 
 ## Support for Conan v2 and later
-CycloneDX support for Conan2 is available as an [offical Conan2 extension](https://github.com/conan-io/conan-extensions#readme). 
-See the [conan-extensions sbom commands](https://github.com/conan-io/conan-extensions/blob/main/extensions/commands/sbom/README.md)
+
+CycloneDX support for Conan2 is available as an [offical Conan2 extension](https://github.com/conan-io/conan-extensions#readme).  
+See the [conan-extensions sbom commands](https://github.com/conan-io/conan-extensions/blob/main/extensions/commands/sbom/README.md).
 
 ----
 
-This project provides a tool for generating CycloneDX bill-of-material JSON documents for C/C++ projects using Conan v1.
+This project provides a tool for generating CycloneDX bill-of-material JSON documents for C/C++ projects using _Conan v1_.
 
 The BOM will contain an aggregate of all your current project's dependencies, including a full dependency graph.
 
