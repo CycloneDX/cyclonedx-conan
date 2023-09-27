@@ -2,6 +2,17 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.1 (2023-09-27)
+
+### Fix
+
+* Retirement of this project ([`816542b`](https://github.com/CycloneDX/cyclonedx-conan/commit/816542bb14c3a5341dad978946ad120b20db66ce))
+
+### Documentation
+
+* Emphasize conan v1 support ([`88a1e5f`](https://github.com/CycloneDX/cyclonedx-conan/commit/88a1e5fd1c2efdc935fcb0ff417c0e0fd5f6fd79))
+* Hint to conan2 support ([`38a1987`](https://github.com/CycloneDX/cyclonedx-conan/commit/38a1987ca9f19faf7d0476ad4b9af591ed1dc243))
+
 ## v0.4.0 (2023-08-02)
 
 ### Feature
